@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caminho do Rikishi (力士の道) — Sumô Tradicional Japonês | Way of the Rikishi</title>
+  
+  <!-- SEO & Metatags -->
+  <meta name="description" content="Portal educativo aberto bilíngue sobre a filosofia, história, rituais e técnicas do sumô tradicional japonês (Ozumo). Conheça a linha do tempo, a anatomia de um combate e o catálogo oficial de Kimarite.">
+  <meta name="theme-color" content="#0e0e11">
+
+  <!-- Google Fonts: Cinzel (Títulos), Noto Serif JP (Kanjis), Plus Jakarta Sans (Texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Noto+Serif+JP:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Efeitos Atmosféricos Tradicionais de Fundo (Washi, Sal e Sol Nascente Hinomaru) -->
+  <div class="rising-sun-disk" aria-hidden="true"></div>
+  <canvas id="salt-particles-canvas" class="salt-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="washi-grain-overlay" aria-hidden="true"></div>
+  <div class="watermark-kanji" aria-hidden="true">力士道</div>
+
+  <!-- Navbar / Header Fixo -->
+  <header class="site-header" id="navbar">
+    <div class="container header-container">
+      <a href="#hero" class="brand" aria-label="Caminho do Rikishi - Início">
+        <div class="hanko-seal" title="Selo Oficial Rikishi">
+          <span>力士</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title" data-i18n="brand.title">CAMINHO DO RIKISHI</span>
+          <span class="brand-kanji" data-i18n="brand.subtitle">力士の道 • OZUMO TRADICIONAL</span>
+        </div>
+      </a>
+
+      <!-- Menu de Navegação da Jornada no Dojo -->
+      <nav class="header-nav" aria-label="Navegação Principal">
+        <a href="#visao-geral" class="nav-link" data-i18n="nav.overview">1. O que é o Sumô</a>
+        <a href="#historia" class="nav-link" data-i18n="nav.timeline">2. Linha do Tempo</a>
+        <a href="#anatomia" class="nav-link" data-i18n="nav.anatomy">3. O Combate</a>
+        <a href="#modulos" class="nav-link" data-i18n="nav.curriculum">4. Pilares & Kimarite</a>
+      </nav>
+
+      <!-- Ações do Header: Seletor de Idioma pelas Bandeiras e Status -->
+      <div class="header-actions">
+        <!-- Seletor de Idioma pelas Bandeiras Nacionais -->
+        <div class="lang-flags-wrapper" role="group" aria-label="Seletor de Idioma / Language Selector">
+          <button type="button" class="flag-btn active" data-lang="pt" title="Português do Brasil" aria-label="Português do Brasil">
+            <span class="flag-emoji">🇧🇷</span>
+          </button>
+          <button type="button" class="flag-btn" data-lang="en" title="English" aria-label="English">
+            <span class="flag-emoji">🇺🇸</span>
+          </button>
+        </div>
+
+        <div class="header-status">
+          <span class="status-indicator"></span>
+          <span class="status-label" data-i18n="header.status">Portal Educativo Aberto</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         HERO SECTION: ABERTURA DO PORTAL DO SANTUÁRIO (SHINMEI TORII & MA)
+         ===================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-shrine-container">
+        <!-- Pilar Vertical Esquerdo do Santuário (Tategaki) -->
+        <aside class="shrine-vertical-pillar left" aria-hidden="true">
+          <span class="pillar-seal">伊勢</span>
+          <span class="tategaki-text">神宮の静寂と相撲の神事</span>
+          <span class="pillar-sub">EST. 712 AD</span>
+        </aside>
+
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-kanji">神事・武道</span>
+            <span data-i18n="hero.badge">Tradição • Filosofia • Marcialidade Milenar</span>
+          </div>
+
+          <h1 class="hero-title" data-i18n="hero.title">
+            A Força que Nasce do <span class="highlight-vermilion">Respeito</span>
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            Mergulhe no universo sagrado do <em>Ozumo</em> (大相撲). Mais do que um combate corpo a corpo,
+            o sumô é uma disciplina espiritual xintoísta onde honra, autodomínio e reverência aos
+            ancestrais moldam cada respiração no <em>dohyō</em>.
+          </p>
+
+          <!-- Ação Cerimonial de Entrada no Santuário -->
+          <div class="hero-dojo-entry">
+            <a href="#visao-geral" class="dojo-entry-btn" id="btn-enter-dojo">
+              <span class="btn-gate-icon" aria-hidden="true">⛩</span>
+              <span data-i18n="hero.enterDojo">Adentrar o Santuário & Iniciar a Caminhada</span>
+              <span class="btn-arrow" aria-hidden="true">↓</span>
+            </a>
+            <p class="dojo-entry-note" data-i18n="hero.entryNote">
+              Deixe o ruído do mundo no <em>Genkan</em> (soleira). Você acaba de pisar no solo sagrado de Ise e do <em>Heya</em>.
+            </p>
+          </div>
+
+          <!-- Stats / Pilares em Destaque em Carpintaria Hinoki -->
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number">1.500+</span>
+              <span class="stat-desc" data-i18n="hero.stat1.desc">Anos de Tradição e Rituais</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-i18n="hero.stat2.num">4 Eras</span>
+              <span class="stat-desc" data-i18n="hero.stat2.desc">Dos Mitos aos Torneios Modernos</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">82</span>
+              <span class="stat-desc" data-i18n="hero.stat3.desc">Kimarite Oficiais Reconhecidas</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">4</span>
+              <span class="stat-desc" data-i18n="hero.stat4.desc">Pilares de Conhecimento e Prática</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pilar Vertical Direito do Santuário (Tategaki) -->
+        <aside class="shrine-vertical-pillar right" aria-hidden="true">
+          <span class="pillar-seal">大相撲</span>
+          <span class="tategaki-text">力士の道・天地礼拝</span>
+          <span class="pillar-sub">KOKUGI</span>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PASSO 1: APRESENTAÇÃO GERAL: ENTRADA NO HEYA (相撲とは)
+         ===================================================================== -->
+    <section class="overview-section" id="visao-geral">
+      <div class="container">
+        <!-- Marcador Arquitetônico do Santuário (Keidai) -->
+        <div class="dojo-step-banner">
+          <div class="step-pillar-tag">
+            <span class="step-number" data-i18n="steps.step1.badge">Capítulo I</span>
+            <span class="step-title" data-i18n="steps.step1.title">O Umbral Sagrado: A Essência & Devoção Xintoísta</span>
+          </div>
+          <span class="step-kanji" aria-hidden="true">第一章 • 神事と真髄</span>
+        </div>
+
+        <div class="section-heading text-center">
+          <span class="section-pretitle" data-i18n="overview.pretitle">相撲とは • A Essência e Significado</span>
+          <h2 class="section-title" data-i18n="overview.title">Muito Mais que uma Luta: Uma Devoção Viva</h2>
+          <p class="section-lead" data-i18n="overview.lead">
+            O sumô é um dos esportes profissionais organizados mais antigos da humanidade, existindo há mais de 15 séculos na convergência singular entre marcialidade, espetáculo e sagrado.
+          </p>
+        </div>
+
+        <div class="overview-grid">
+          <!-- Bloco Principal de Apresentação com Borda Wabi-Sabi -->
+          <div class="overview-main-card">
+            <div class="overview-badge">
+              <span class="badge-kanji">国技</span>
+              <span data-i18n="overview.badge">Esporte Nacional & Patrimônio Cultural</span>
+            </div>
+            <h3 class="overview-headline" data-i18n="overview.headline">
+              A Tripla Dimensão do <span class="highlight-vermilion">Ozumo Tradicional</span>
+            </h3>
+            <p class="overview-paragraph" data-i18n="overview.p1">
+              Para o olhar desatento, o sumô pode parecer apenas dois homens corpulentos colidindo em um círculo de argila. No entanto, o <em>Ozumo</em> (大相撲) é uma disciplina cerimonial viva, na qual cada centímetro da arena e cada gesto dos lutadores carregam significados forjados ao longo de mil e quinhentos anos de história ininterrupta.
+            </p>
+            <p class="overview-paragraph" data-i18n="overview.p2">
+              Não existem categorias de peso, rounds cronometrados nem comemorações extravagantes. Trata-se de uma contenda onde a força corporal é inseparável da dignidade interior (<em>Hinkaku</em>), transformando a disputa esportiva em um tributo à honra, à ancestralidade e à harmonia cósmica.
+            </p>
+
+            <div class="overview-pillars-summary">
+              <div class="essence-pillar">
+                <div class="essence-icon" aria-hidden="true">神</div>
+                <div class="essence-content">
+                  <h4 data-i18n="overview.pillar1.title">Devoção Xintoísta (Shinji)</h4>
+                  <p data-i18n="overview.pillar1.desc">O dohyō é um santuário sagrado purificado com sal marinho onde se ora pela bênção e fertilidade das colheitas.</p>
+                </div>
+              </div>
+
+              <div class="essence-pillar">
+                <div class="essence-icon" aria-hidden="true">武</div>
+                <div class="essence-content">
+                  <h4 data-i18n="overview.pillar2.title">Arte Marcial Rígida (Budō)</h4>
+                  <p data-i18n="overview.pillar2.desc">Herança dos guerreiros samurais: precisão biomecânica, alavancagem cinética e retidão moral inegociável.</p>
+                </div>
+              </div>
+
+              <div class="essence-pillar">
+                <div class="essence-icon" aria-hidden="true">興</div>
+                <div class="essence-content">
+                  <h4 data-i18n="overview.pillar3.title">Espetáculo Profissional</h4>
+                  <p data-i18n="overview.pillar3.desc">Seis grandes torneios anuais (Honbasho) que mobilizam o Japão sob hierarquia estrita mantida há séculos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Lateral com Estatísticas & Citação Visual -->
+          <aside class="overview-side-card">
+            <div class="side-seal-header">
+              <div class="hanko-seal small">
+                <span>心</span>
+              </div>
+              <span class="side-kicker" data-i18n="overview.side.kicker">Filosofia de Dohyō</span>
+            </div>
+
+            <blockquote class="side-quote">
+              <p data-i18n="overview.side.quote">“No círculo sagrado, a vaidade é desmantelada. O rikishi luta não para humilhar o adversário, mas para oferecer sua máxima força como prece viva.”</p>
+            </blockquote>
+
+            <div class="tradition-highlights">
+              <div class="tradition-item">
+                <span class="tradition-number">15+</span>
+                <span class="tradition-text" data-i18n="overview.stat1.text">Séculos de tradição ininterrupta documentada</span>
+              </div>
+              <div class="tradition-item">
+                <span class="tradition-number">6</span>
+                <span class="tradition-text" data-i18n="overview.stat2.text">Torneios oficiais (Basho) disputados ao ano</span>
+              </div>
+              <div class="tradition-item">
+                <span class="tradition-number">15</span>
+                <span class="tradition-text" data-i18n="overview.stat3.text">Dias consecutivos de combate intenso em cada torneio</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Botão de Próximo Passo na Caminhada -->
+        <div class="step-transition-box">
+          <a href="#historia" class="step-forward-btn">
+            <span data-i18n="steps.step1.nextBtn">Continuar Caminhada: Entrar no Corredor dos Séculos</span>
+            <span class="step-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PASSO 2: A CAMINHADA PELOS SÉCULOS: LINHA DO TEMPO (歴史の変遷)
+         ===================================================================== -->
+    <section class="timeline-section" id="historia">
+      <div class="container">
+        <!-- Marcador Arquitetônico do Santuário (Keidai) -->
+        <div class="dojo-step-banner">
+          <div class="step-pillar-tag">
+            <span class="step-number" data-i18n="steps.step2.badge">Capítulo II</span>
+            <span class="step-title" data-i18n="steps.step2.title">A Trilha dos Séculos: A Caminhada Histórica</span>
+          </div>
+          <span class="step-kanji" aria-hidden="true">第二章 • 千年の参道</span>
+        </div>
+
+        <div class="section-heading text-center">
+          <span class="section-pretitle" data-i18n="timeline.pretitle">歴史の変遷 • Dos Mitos Primitivos à Era Moderna</span>
+          <h2 class="section-title" data-i18n="timeline.title">A Linha do Tempo: A Evolução dos Séculos</h2>
+          <p class="section-lead" data-i18n="timeline.lead">
+            Caminhe ao longo de quatro grandes eras históricas da civilização japonesa e descubra como o ritual dos deuses moldou o esporte profissional.
+          </p>
+        </div>
+
+        <!-- Seletor Interativo de Eras Históricas (Passos da Linha do Tempo) -->
+        <nav class="timeline-nav-wrapper" aria-label="Navegação por Eras Históricas">
+          <div class="timeline-nav-tabs" id="timeline-nav-tabs" role="tablist">
+            <button type="button" class="timeline-era-btn active" data-era="mitologica" role="tab" aria-selected="true">
+              <span class="era-kanji">神話・古代</span>
+              <span class="era-title" data-i18n="timeline.tab1.title">1. Mitológica & Antiguidade</span>
+              <span class="era-period" data-i18n="timeline.tab1.period">Século VIII</span>
+            </button>
+            <button type="button" class="timeline-era-btn" data-era="imperial" role="tab" aria-selected="false">
+              <span class="era-kanji">平安時代</span>
+              <span class="era-title" data-i18n="timeline.tab2.title">2. Era Imperial</span>
+              <span class="era-period" data-i18n="timeline.tab2.period">Sécs. VIII a XII</span>
+            </button>
+            <button type="button" class="timeline-era-btn" data-era="guerreira" role="tab" aria-selected="false">
+              <span class="era-kanji">武家・戦国</span>
+              <span class="era-title" data-i18n="timeline.tab3.title">3. Guerreira & Samurais</span>
+              <span class="era-period" data-i18n="timeline.tab3.period">Sécs. XII a XVI</span>
+            </button>
+            <button type="button" class="timeline-era-btn" data-era="edo" role="tab" aria-selected="false">
+              <span class="era-kanji">江戸時代</span>
+              <span class="era-title" data-i18n="timeline.tab4.title">4. Edo & Sumô Moderno</span>
+              <span class="era-period" data-i18n="timeline.tab4.period">Sécs. XVII a XIX</span>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Trilha da Linha do Tempo e Cards das Quatro Eras -->
+        <div class="timeline-container">
+          <div class="timeline-track" aria-hidden="true"></div>
+
+          <!-- Era 1: Mitológica & Antiguidade -->
+          <article class="timeline-card-item active" id="era-mitologica" data-era="mitologica">
+            <div class="timeline-node">
+              <span class="node-marker" aria-hidden="true"></span>
+              <span class="node-year">712 d.C.</span>
+            </div>
+
+            <div class="timeline-card-content">
+              <div class="timeline-card-header">
+                <div class="era-badge-group">
+                  <span class="era-tag" data-i18n="timeline.era1.tag">Era I • Mitos & Xintoísmo</span>
+                  <span class="era-century-badge" data-i18n="timeline.era1.badge">Kojiki — Século VIII</span>
+                </div>
+                <span class="era-kanji-big">神代</span>
+              </div>
+
+              <h3 class="era-card-title" data-i18n="timeline.era1.title">Era Mitológica & Antiguidade</h3>
+              <h4 class="era-card-subtitle" data-i18n="timeline.era1.subtitle">A Lenda de Takemikazuchi & Ritos de Fertilidade</h4>
+
+              <p class="era-card-text" data-i18n="timeline.era1.p1">
+                O sumô nasce envolto na mitologia da criação japonesa registrada no <strong>Kojiki</strong> (Registro dos Fatos Antigos, 712 d.C.). Segundo a lenda, o deus do trovão <em>Takemikazuchi</em> enfrentou o deus <em>Takeminakata</em> em um combate corporal decisivo na praia de Inasa pela supremacia sobre as ilhas do Japão.
+              </p>
+
+              <p class="era-card-text" data-i18n="timeline.era1.p2">
+                Durante a antiguidade, as primeiras contendas de sumô eram rituais sagrados de adivinhação agrícola celebrados nos vilarejos: a força empregada nas lutas era oferecida aos <strong>Kami</strong> (espíritos divinos da natureza) para implorar por colheitas abundantes de arroz e apaziguar calamidades climáticas.
+              </p>
+
+              <div class="era-milestones">
+                <div class="milestone-pill">
+                  <span class="milestone-icon">⛩</span>
+                  <span data-i18n="timeline.era1.m1"><strong>Origem Ritual:</strong> Ritos agrários dedicados aos espíritos Kami</span>
+                </div>
+                <div class="milestone-pill">
+                  <span class="milestone-icon">📜</span>
+                  <span data-i18n="timeline.era1.m2"><strong>Primeiro Registro:</strong> Manuscrito sagrado do Kojiki (712 d.C.)</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Era 2: Era Imperial (Período Heian) -->
+          <article class="timeline-card-item" id="era-imperial" data-era="imperial">
+            <div class="timeline-node">
+              <span class="node-marker" aria-hidden="true"></span>
+              <span class="node-year">Séc. VIII–XII</span>
+            </div>
+
+            <div class="timeline-card-content">
+              <div class="timeline-card-header">
+                <div class="era-badge-group">
+                  <span class="era-tag" data-i18n="timeline.era2.tag">Era II • Aristocracia de Kyoto</span>
+                  <span class="era-century-badge" data-i18n="timeline.era2.badge">Período Heian — Sécs. VIII a XII</span>
+                </div>
+                <span class="era-kanji-big">宮廷</span>
+              </div>
+
+              <h3 class="era-card-title" data-i18n="timeline.era2.title">Era Imperial</h3>
+              <h4 class="era-card-subtitle" data-i18n="timeline.era2.subtitle">O Banquete Palaciano do Sechie-zumo (節会相撲)</h4>
+
+              <p class="era-card-text" data-i18n="timeline.era2.p1">
+                Com o florescimento da requintada corte imperial em Kyoto, o sumô deixou as aldeias rústicas e foi adotado como uma pomposa cerimônia de Estado sob a denominação de <strong>Sechie-zumo</strong> (節会相撲). Anualmente, no sétimo mês do calendário lunar após a colheita, o Imperador convocava os homens mais vigorosos de todas as províncias para exibirem sua força no jardim do palácio.
+              </p>
+
+              <p class="era-card-text" data-i18n="timeline.era2.p2">
+                Nesse período, o esporte foi elevado a símbolo aristocrático de paz e prestígio dinástico. Regras cerimoniais estritas foram introduzidas, os combates passaram a ser acompanhados por música de corte imperial (<em>Gagaku</em>) e árbitros togados começaram a presidir as decisões diante da nobreza.
+              </p>
+
+              <div class="era-milestones">
+                <div class="milestone-pill">
+                  <span class="milestone-icon">👑</span>
+                  <span data-i18n="timeline.era2.m1"><strong>Patrocínio da Corte:</strong> Torneios anuais na presença direta do Imperador</span>
+                </div>
+                <div class="milestone-pill">
+                  <span class="milestone-icon">⚖</span>
+                  <span data-i18n="timeline.era2.m2"><strong>Refinamento Técnico:</strong> Primeiras formalizações de faltas e etiquetas cerimoniais</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Era 3: Era Guerreira & Samurais -->
+          <article class="timeline-card-item" id="era-guerreira" data-era="guerreira">
+            <div class="timeline-node">
+              <span class="node-marker" aria-hidden="true"></span>
+              <span class="node-year">Séc. XII–XVI</span>
+            </div>
+
+            <div class="timeline-card-content">
+              <div class="timeline-card-header">
+                <div class="era-badge-group">
+                  <span class="era-tag" data-i18n="timeline.era3.tag">Era III • Período dos Guerreiros</span>
+                  <span class="era-century-badge" data-i18n="timeline.era3.badge">Kamakura a Sengoku — Sécs. XII a XVI</span>
+                </div>
+                <span class="era-kanji-big">武家</span>
+              </div>
+
+              <h3 class="era-card-title" data-i18n="timeline.era3.title">Era Guerreira & Samurais</h3>
+              <h4 class="era-card-subtitle" data-i18n="timeline.era3.subtitle">O Buke-zumo (武家相撲) & Os Torneios de Oda Nobunaga</h4>
+
+              <p class="era-card-text" data-i18n="timeline.era3.p1">
+                Com a derrocada do poder civil e a ascensão do regime militar dos Samurais e do Xogunato Kamakura, o sumô despiu-se do requinte da corte e voltou-se para a brutalidade da guerra sob o nome de <strong>Buke-zumo</strong> (武家相撲). Tornou-se um treinamento marcial obrigatório para ensinar os guerreiros a imobilizar e arremessar adversários em combates corpo a corpo nos campos de batalha.
+              </p>
+
+              <p class="era-card-text" data-i18n="timeline.era3.p2">
+                No auge da era das guerras civis (Sengoku), o lendário líder militar <strong>Oda Nobunaga</strong>, fervoroso entusiasta da prática, reuniu mais de 1.500 lutadores no Castelo de Azuchi para recrutar novos oficiais samurais. Foi Nobunaga quem primeiro instituiu limites circulares demarcados no chão para que as lutas fossem rápidas e os espectadores pudessem se aglomerar em segurança.
+              </p>
+
+              <div class="era-milestones">
+                <div class="milestone-pill">
+                  <span class="milestone-icon">⚔</span>
+                  <span data-i18n="timeline.era3.m1"><strong>Forja Marcial:</strong> Condicionamento físico letal para a classe dos Samurais</span>
+                </div>
+                <div class="milestone-pill">
+                  <span class="milestone-icon">⭕</span>
+                  <span data-i18n="timeline.era3.m2"><strong>Inovação de Nobunaga:</strong> Surgem as primeiras demarcações circulares do ringue</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Era 4: Era Edo & O Nascimento do Sumô Moderno -->
+          <article class="timeline-card-item" id="era-edo" data-era="edo">
+            <div class="timeline-node">
+              <span class="node-marker" aria-hidden="true"></span>
+              <span class="node-year">Séc. XVII–XIX</span>
+            </div>
+
+            <div class="timeline-card-content">
+              <div class="timeline-card-header">
+                <div class="era-badge-group">
+                  <span class="era-tag" data-i18n="timeline.era4.tag">Era IV • Fundação Moderna</span>
+                  <span class="era-century-badge" data-i18n="timeline.era4.badge">Período Edo — Sécs. XVII a XIX</span>
+                </div>
+                <span class="era-kanji-big">勧進</span>
+              </div>
+
+              <h3 class="era-card-title" data-i18n="timeline.era4.title">Era Edo & O Nascimento do Sumô Moderno</h3>
+              <h4 class="era-card-subtitle" data-i18n="timeline.era4.subtitle">O Kanjin-zumo (勧進相撲) e a Criação do Dohyō Elevado</h4>
+
+              <p class="era-card-text" data-i18n="timeline.era4.p1">
+                Durante a longa paz do Xogunato Tokugawa, o sumô converteu-se no mais amado entretenimento popular das metrópoles de Edo (atual Tóquio) e Osaka. Inicialmente organizado para arrecadar donativos para a reforma e construção de templos budistas e santuários xintoístas (<strong>Kanjin-zumo</strong>), o sumô consolidou sua infraestrutura profissional e esportiva.
+              </p>
+
+              <p class="era-card-text" data-i18n="timeline.era4.p2">
+                Neste período decisivo nasceram todas as bases do sumô que conhecemos hoje: foi erguido o <strong>dohyō elevado de argila</strong> com fardos de arroz semi-enterrados (<em>tawara</em>), estabeleceu-se a lista oficial de rankings caligrafados à mão (<strong>Banzuke</strong>), codificaram-se as 48 técnicas clássicas de vitória e fundou-se a associação profissional que administra o esporte até a atualidade.
+              </p>
+
+              <div class="era-milestones">
+                <div class="milestone-pill">
+                  <span class="milestone-icon">🏛</span>
+                  <span data-i18n="timeline.era4.m1"><strong>Arquitetura Oficial:</strong> O dohyō elevado de argila com fardos de arroz</span>
+                </div>
+                <div class="milestone-pill">
+                  <span class="milestone-icon">📜</span>
+                  <span data-i18n="timeline.era4.m2"><strong>Estrutura Profissional:</strong> Publicação do primeiro Banzuke oficial e 48 técnicas</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Botão de Próximo Passo na Caminhada -->
+        <div class="step-transition-box">
+          <a href="#anatomia" class="step-forward-btn">
+            <span data-i18n="steps.step2.nextBtn">Continuar Caminhada: Aproximar-se do Dohyō Sagrado</span>
+            <span class="step-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PASSO 3: À BEIRA DA ARGILA: ANATOMIA DO COMBATE (土俵際)
+         ===================================================================== -->
+    <section class="anatomy-section" id="anatomia">
+      <div class="container">
+        <!-- Marcador Arquitetônico do Santuário (Keidai) -->
+        <div class="dojo-step-banner">
+          <div class="step-pillar-tag">
+            <span class="step-number" data-i18n="steps.step3.badge">Capítulo III</span>
+            <span class="step-title" data-i18n="steps.step3.title">À Beira da Argila (Dohyō-giwa): As Regras do Duelo</span>
+          </div>
+          <span class="step-kanji" aria-hidden="true">第三章 • 土俵の神域</span>
+        </div>
+
+        <div class="section-heading text-center">
+          <span class="section-pretitle" data-i18n="anatomy.pretitle">一番の真髄 • Regras & Dinâmica Instantânea</span>
+          <h2 class="section-title" data-i18n="anatomy.title">Anatomia de um Combate</h2>
+          <p class="section-lead" data-i18n="anatomy.lead">
+            Sem tempo a perder, sem divisões de peso e sem contagem por pontos. No sumô, meses de preparação se resumem a uma fração de segundo.
+          </p>
+        </div>
+
+        <div class="anatomy-grid">
+          <!-- Card 1: O Ringue (Dohyō) -->
+          <article class="anatomy-card">
+            <div class="anatomy-watermark" aria-hidden="true">土俵</div>
+            <header class="anatomy-card-header">
+              <div class="anatomy-step-badge">
+                <span class="step-num">01</span>
+                <span class="step-label" data-i18n="anatomy.card1.step">O Cenário</span>
+              </div>
+              <span class="anatomy-kanji">土俵</span>
+            </header>
+            <h3 class="anatomy-card-title" data-i18n="anatomy.card1.title">O Ringue (Dohyō)</h3>
+            <p class="anatomy-metric" data-i18n="anatomy.card1.metric">4,55 metros de diâmetro</p>
+            <p class="anatomy-card-desc" data-i18n="anatomy.card1.desc">
+              Uma arena circular perfeita delimitada por 28 fardos de palha de arroz (<em>tawara</em>) cravados em um quadrado elevado de 60 cm de argila batida purificada. Não existem cordas, grades ou proteções: quem ultrapassar o limite ou despencar da elevação perde no mesmo instante.
+            </p>
+            <div class="anatomy-rule-box">
+              <span class="rule-icon" aria-hidden="true">⚠</span>
+              <span data-i18n="anatomy.card1.rule">Borda estrita: um único dedo tocando fora do círculo sela o fim da luta.</span>
+            </div>
+          </article>
+
+          <!-- Card 2: O Choque (Tachi-ai) -->
+          <article class="anatomy-card">
+            <div class="anatomy-watermark" aria-hidden="true">立合</div>
+            <header class="anatomy-card-header">
+              <div class="anatomy-step-badge">
+                <span class="step-num">02</span>
+                <span class="step-label" data-i18n="anatomy.card2.step">A Explosão</span>
+              </div>
+              <span class="anatomy-kanji">立ち会い</span>
+            </header>
+            <h3 class="anatomy-card-title" data-i18n="anatomy.card2.title">O Choque (Tachi-ai)</h3>
+            <p class="anatomy-metric" data-i18n="anatomy.card2.metric">Fração de segundo inicial</p>
+            <p class="anatomy-card-desc" data-i18n="anatomy.card2.desc">
+              Zero enrolação ou atraso. A contenda não se inicia ao soar de um gongo, mas pela respiração sincronizada (<em>a-un no kokyu</em>). Quando ambos tocam simultaneamente os dois punhos no solo nas linhas de partida (<em>shikiri-sen</em>), mais de 300 kg combinados colidem com violência cinética inaudita.
+            </p>
+            <div class="anatomy-rule-box">
+              <span class="rule-icon" aria-hidden="true">⚡</span>
+              <span data-i18n="anatomy.card2.rule">Impacto súbito: quem vence a colisão do tachi-ai controla mais de 70% das lutas.</span>
+            </div>
+          </article>
+
+          <!-- Card 3: A Decisão (Shōbu) -->
+          <article class="anatomy-card">
+            <div class="anatomy-watermark" aria-hidden="true">勝負</div>
+            <header class="anatomy-card-header">
+              <div class="anatomy-step-badge">
+                <span class="step-num">03</span>
+                <span class="step-label" data-i18n="anatomy.card3.step">O Desfecho</span>
+              </div>
+              <span class="anatomy-kanji">勝負の決</span>
+            </header>
+            <h3 class="anatomy-card-title" data-i18n="anatomy.card3.title">A Decisão (Shōbu)</h3>
+            <p class="anatomy-metric" data-i18n="anatomy.card3.metric">3 a 10 segundos de duração</p>
+            <p class="anatomy-card-desc" data-i18n="anatomy.card3.desc">
+              A regra é cirúrgica e implacável: qualquer parte do corpo fora a sola dos pés que encoste na argila — seja um joelho, a mão ou a ponta do coque de cabelo (<em>mage</em>) — decreta a derrota. O árbitro central (<em>Gyōji</em>) aponta seu leque cerimonial e 5 juízes (<em>Shinpan</em>) ratificam a vitória.
+            </p>
+            <div class="anatomy-rule-box">
+              <span class="rule-icon" aria-hidden="true">⚖</span>
+              <span data-i18n="anatomy.card3.rule">Sem empate: a decisão é categórica e decidida por uma das 82 kimarite oficiais.</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Botão de Próximo Passo na Caminhada -->
+        <div class="step-transition-box">
+          <a href="#modulos" class="step-forward-btn">
+            <span data-i18n="steps.step3.nextBtn">Atingir o Coração do Dojo: Pilares & Golpes de Vitória</span>
+            <span class="step-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PASSO 4: O CORAÇÃO DO DOJO: PILARES & CATÁLOGO DE KIMARITE (力士の教え)
+         ===================================================================== -->
+    <section class="curriculum-section" id="modulos">
+      <div class="container">
+        <!-- Marcador Arquitetônico do Santuário (Keidai) -->
+        <div class="dojo-step-banner">
+          <div class="step-pillar-tag">
+            <span class="step-number" data-i18n="steps.step4.badge">Capítulo IV</span>
+            <span class="step-title" data-i18n="steps.step4.title">O Santuário Técnico: Filosofia & As 82 Kimarite</span>
+          </div>
+          <span class="step-kanji" aria-hidden="true">第四章 • 技と決まり手</span>
+        </div>
+
+        <div class="section-heading text-center">
+          <span class="section-pretitle" data-i18n="curriculum.pretitle">力士の教え • Ementa & Consulta Técnica</span>
+          <h2 class="section-title" data-i18n="curriculum.title">Pilares e Técnicas do Sumô Tradicional</h2>
+          <p class="section-lead" data-i18n="curriculum.lead">
+            Explore os fundamentos filosóficos, a disciplina diária e o catálogo de técnicas oficiais de vitória do Ozumo.
+          </p>
+        </div>
+
+        <!-- Barra de Navegação por Abas -->
+        <nav class="tabs-nav" aria-label="Navegação dos Módulos Educativos">
+          <div class="tabs-list" id="tabs-container" role="tablist">
+            <!-- As abas são geradas dinamicamente pelo app.js de acordo com o idioma -->
+          </div>
+        </nav>
+
+        <!-- Descrição do Módulo Ativo -->
+        <div class="module-intro-card" id="module-info-box" aria-live="polite">
+          <div class="module-info-header">
+            <span class="module-badge-id" id="module-badge">Módulo I</span>
+            <span class="module-kanji-symbol" id="module-kanji-big">心技体</span>
+          </div>
+          <h3 class="module-info-title" id="module-title">Carregando Módulo...</h3>
+          <p class="module-info-desc" id="module-desc">Carregando conteúdo...</p>
+        </div>
+
+        <!-- Módulo Interativo de Kimarite (Busca, Filtros de Categoria e Contador) -->
+        <div class="kimarite-controls-wrapper" id="kimarite-controls" style="display: none;" aria-label="Filtros e Busca de Kimarite">
+          <!-- Barra Superior: Busca em Tempo Real e Contador -->
+          <div class="kimarite-search-row">
+            <div class="kimarite-search-box">
+              <span class="search-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </span>
+              <input
+                type="text"
+                id="kimarite-search-input"
+                class="kimarite-search-input"
+                placeholder="Buscar por nome (ex: Yorikiri), kanji (寄り切り) ou mecânica..."
+                aria-label="Buscar técnica de vitória (Kimarite)"
+                autocomplete="off"
+                spellcheck="false"
+              >
+              <button type="button" id="kimarite-clear-search" class="search-clear-btn" aria-label="Limpar busca" title="Limpar busca">
+                &times;
+              </button>
+            </div>
+
+            <div class="kimarite-counter-badge" id="kimarite-counter-badge" aria-live="polite">
+              <span class="counter-dot" aria-hidden="true"></span>
+              <span id="kimarite-counter-text">Exibindo 12 de 12 técnicas</span>
+            </div>
+          </div>
+
+          <!-- Filtros de Categorias em Chips / Pills -->
+          <div class="kimarite-filters-row">
+            <span class="filter-heading-label" data-i18n="kimarite.filterHeading">Filtrar por Categoria:</span>
+            <div class="filter-chips-list" id="filter-chips-list" role="tablist" aria-label="Categorias de Kimarite">
+              <!-- Gerados dinamicamente via app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid de Cartões Renderizados Dinamicamente -->
+        <div class="cards-grid" id="cards-grid" role="region" aria-live="polite" aria-label="Conteúdo do Módulo">
+          <!-- Cartões populados via app.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. SABEDORIA TRADICIONAL & RESPEITO
+         ===================================================================== -->
+    <section class="quote-section">
+      <div class="container quote-container">
+        <div class="quote-symbol" aria-hidden="true">礼</div>
+        <div class="enso-brush-bg" aria-hidden="true"></div>
+        <blockquote class="traditional-quote">
+          <p data-i18n="quote.text">“Rei ni hajimari, rei ni owaru — O combate se inicia com a reverência e conclui-se com o respeito.”</p>
+          <cite data-i18n="quote.cite">— Princípio Fundamental do Dohyō e da Dignidade (Hinkaku)</cite>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="hanko-seal small">
+          <span>力士</span>
+        </div>
+        <div class="footer-brand-meta">
+          <span class="footer-title" data-i18n="footer.title">Caminho do Rikishi (力士の道)</span>
+          <span class="footer-copy" data-i18n="footer.copy">Iniciativa comunitária para a difusão e preservação da cultura do sumô tradicional.</span>
+        </div>
+      </div>
+
+      <div class="footer-notes">
+        <p class="footer-disclaimer" data-i18n="footer.disclaimer">
+          Conteúdo formatado exclusivamente para fins educativos e culturais abertos.
+        </p>
+        <p class="footer-rights">
+          &copy; <span id="current-year">2026</span> • <span data-i18n="footer.rights">Desenvolvido com respeito às tradições da Nihon Sumo Kyokai (日本相撲協会).</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal -->
+  <script src="app.js"></script>
+</body>
+</html>
