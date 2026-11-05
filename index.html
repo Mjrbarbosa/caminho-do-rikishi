@@ -62,9 +62,34 @@
           <span class="status-indicator"></span>
           <span class="status-label" data-i18n="header.status">Portal Educativo Aberto</span>
         </div>
+
+        <!-- Botão Menu Mobile (Telas Menores) -->
+        <button type="button" class="mobile-menu-toggle" id="btn-mobile-menu" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Drawer de Navegação Móvel (Santuário) -->
+  <div class="mobile-nav-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <div class="drawer-brand">
+        <span class="hanko-seal small"><span>力士</span></span>
+        <span class="drawer-title" data-i18n="brand.title">CAMINHO DO RIKISHI</span>
+      </div>
+      <button type="button" class="drawer-close-btn" id="btn-close-drawer" aria-label="Fechar Menu">✕</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="#visao-geral" class="mobile-nav-link" data-i18n="nav.overview">1. O que é o Sumô</a>
+      <a href="#historia" class="mobile-nav-link" data-i18n="nav.timeline">2. Linha do Tempo</a>
+      <a href="#anatomia" class="mobile-nav-link" data-i18n="nav.anatomy">3. O Combate</a>
+      <a href="#modulos" class="mobile-nav-link" data-i18n="nav.curriculum">4. Pilares & Kimarite</a>
+    </nav>
+  </div>
+  <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
 
   <main>
     <!-- =====================================================================

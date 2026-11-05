@@ -1489,7 +1489,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // 13. NAVEGAÇÃO SUAVE DOS LINKS DO HEADER E CAMINHADA NO DOJO
   // =========================================================================
   function initHeaderNav() {
-    const smoothLinks = document.querySelectorAll('.header-nav .nav-link, #btn-enter-dojo, .step-forward-btn');
+    const smoothLinks = document.querySelectorAll('.header-nav .nav-link, .mobile-drawer-nav .mobile-nav-link, #btn-enter-dojo, .step-forward-btn');
+    const mobileBtn = document.getElementById('btn-mobile-menu');
+    const closeBtn = document.getElementById('btn-close-drawer');
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+
+    function openDrawer() {
+      if (!drawer || !backdrop) return;
+      drawer.classList.add('open');
+      backdrop.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      if (!drawer || !backdrop) return;
+      drawer.classList.remove('open');
+      backdrop.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    if (mobileBtn) mobileBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
     smoothLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const targetId = link.getAttribute('href');
@@ -1497,6 +1524,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const targetElem = document.querySelector(targetId);
           if (targetElem) {
             e.preventDefault();
+            closeDrawer();
             targetElem.scrollIntoView({ behavior: 'smooth' });
           }
         }
